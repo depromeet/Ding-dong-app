@@ -9,9 +9,9 @@ import React, {useRef, useState} from 'react';
 import {SafeAreaView, StatusBar} from 'react-native';
 import {WebView as RNWebview, WebViewMessageEvent} from 'react-native-webview';
 
-import {WEBVIEW_URI} from '@env';
 import {safeAreaViewStyles} from '@/styles/webview';
 import Webview from '@/components/Webview';
+import {BASE_URI} from '@/constants/common';
 
 function App(): JSX.Element {
   const webviewRef = useRef<RNWebview>();
@@ -43,7 +43,7 @@ function App(): JSX.Element {
     <SafeAreaView style={safeAreaViewStyles}>
       <StatusBar />
       <Webview
-        uri={WEBVIEW_URI}
+        uri={BASE_URI}
         customRef={webviewRef}
         onLoadEnd={handleEndLoading}
         onMessage={handleOnMessage}
