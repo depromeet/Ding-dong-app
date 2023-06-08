@@ -5,13 +5,13 @@
  * @format
  */
 
-import React, {useRef, useState} from 'react';
-import {SafeAreaView, StatusBar} from 'react-native';
-import {WebView as RNWebview, WebViewMessageEvent} from 'react-native-webview';
+import React, { useRef, useState } from 'react';
+import { SafeAreaView, StatusBar } from 'react-native';
+import { WebView as RNWebview, WebViewMessageEvent } from 'react-native-webview';
 
-import {safeAreaViewStyles} from '@/styles/webview';
+import { safeAreaViewStyles } from '@/styles/webview';
 import Webview from '@/components/Webview';
-import {BASE_URI} from '@/constants/common';
+import { BASE_URI } from '@/constants/common';
 
 function App(): JSX.Element {
   const webviewRef = useRef<RNWebview>();
@@ -24,15 +24,15 @@ function App(): JSX.Element {
       webviewRef.current?.reload();
       setIsReloaded(true);
     }
-    webviewRef.current?.postMessage(JSON.stringify({type: 'loaded'}));
+    webviewRef.current?.postMessage(JSON.stringify({ type: 'loaded' }));
   };
 
   /** 웹뷰에서 rn으로 보낸 메시지를 수신합니다. */
-  const handleOnMessage = ({nativeEvent: {data}}: WebViewMessageEvent) => {
+  const handleOnMessage = ({ nativeEvent: { data } }: WebViewMessageEvent) => {
     // data에 웹뷰에서 보낸 값이 들어옵니다.
     console.log(data);
     try {
-      const {type, message} = JSON.parse(data);
+      const { type, message } = JSON.parse(data);
       console.log(type, message);
     } catch (e) {
       console.log(e);
